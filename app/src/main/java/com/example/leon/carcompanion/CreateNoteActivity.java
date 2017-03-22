@@ -1,5 +1,6 @@
 package com.example.leon.carcompanion;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,13 +35,15 @@ public class CreateNoteActivity extends AppCompatActivity {
 
                 BufferedWriter writer;
                 try {
-                    FileOutputStream openedFile = openFileOutput("CarCompNotes", MODE_PRIVATE);
+                    FileOutputStream openedFile = openFileOutput("CarCompNotes", MODE_WORLD_WRITEABLE);
 
                     writer = new BufferedWriter(new OutputStreamWriter(openedFile));
                     String eol = System.getProperty("line.separator");
                     writer.write(note_title + eol);
                     writer.write(note_content + eol);
                     writer.close();
+
+                    changeToReadNote();
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -49,5 +52,12 @@ public class CreateNoteActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    protected void changeToReadNote(){
+        finish();
+        Intent intent = new Intent (this, ReadNoteActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

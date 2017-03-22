@@ -7,4 +7,5 @@
     <string name="speech_not_supported">Sorry! Your device doesn\'t support speech input</string>
     <string name="tap_on_mic">Tap on mich to speak</string>
     <string name="add_note">+</string>
+    <string name="note_module_name">Deine Notizen</string>
 </resources>

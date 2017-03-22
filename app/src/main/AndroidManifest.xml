@@ -22,7 +22,8 @@
         </activity>
         <activity
             android:name=".NoteActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:label="@string/note_module_name"/>
         <activity
             android:name=".CallActivity"
             android:parentActivityName=".MainActivity" />
@@ -31,8 +32,14 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SpotifyActivity"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".CreateNoteActivity"></activity>
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".CreateNoteActivity"
+            android:parentActivityName=".NoteActivity" />
+        <activity
+            android:name=".ReadNoteActivity"
+            android:parentActivityName=".NoteActivity"
+            android:label="Reading Activity"/>
     </application>
 
 </manifest>
