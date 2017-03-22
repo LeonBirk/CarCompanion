@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -38,6 +39,8 @@ public class SMSActivity extends AppCompatActivity {
 
     private void sendSMS(String phone, String message)
     {
+        Log.println(Log.DEBUG, "Telefonnummer: ", phone);
+        Log.println(Log.DEBUG, "Nachricht: ", message);
         PendingIntent pi = PendingIntent.getActivity(this, 0,
                 new Intent(this, SMSActivity.class), 0);
         SmsManager sms = SmsManager.getDefault();
