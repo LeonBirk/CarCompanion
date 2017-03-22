@@ -11,6 +11,7 @@ package com.example.leon.carcompanion;
         import android.os.Bundle;
         import android.speech.RecognizerIntent;
         import android.support.v4.content.ContextCompat;
+        import android.util.Log;
         import android.view.View;
         import android.widget.EditText;
         import android.widget.ImageButton;
@@ -91,12 +92,45 @@ public class MainActivity extends Activity {
                     txtSpeechInput.setText(result.get(0));
                     answer = result.get(0);
 
-                    switch (answer.toUpperCase()){
-                        case "NOTIZEN": changeToNotes(); break;
-                        case "ANRUFE": changeToCalls(); break;
-                        case "SMS": changeToSMS(); break;
-                        case "SPOTIFY": changeToSpotify(); break;
+                    for (String s:result) {
+                        Log.d("MAIN", s);
                     }
+
+                    boolean found = false; //Prüfvariable
+
+                    /*
+                    Die ArrayList @result hat mehrere Antworten. Diese werden jeweils in die
+                    einzelnen Worte aufgeteilt und dann auf definierte Schlagwörter geprüft
+                     */
+                    for (String s:result) { //Aufteilung in "Interpretationen"
+                        String[] split = s.split(" ");
+                        for (String wort:split) { //Aufteilung in die einzelnen Wörter
+
+                            Log.d("MAIN", wort);
+                            switch (wort.toUpperCase()){
+                                case "NOTIZEN":
+                                    found = true;
+                                    changeToNotes();
+                                    break;
+                                case "ANRUFEN":
+                                    found = true;
+                                    changeToCalls();
+                                    break;
+                                case "SMS":
+                                    found = true;
+                                    changeToSMS();
+                                    break;
+                                case "SPOTIFY":
+                                    found = true;
+                                    changeToSpotify();
+                                    break;
+                            }
+                            if (found) break; //Aus der Schleife
+                        }
+
+                        if (found) break;
+                    }
+
 
                 }
 
