@@ -50,37 +50,5 @@
             android:textStyle="normal" />
     </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notizen"
-        android:id="@+id/NotizButton"
-        android:textColor="@color/abc_btn_colored_text_material"
-        android:background="@color/abc_btn_colored_borderless_text_material"
-        android:layout_above="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="44dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Musik"
-        android:id="@+id/MusikButton"
-        android:background="@color/abc_btn_colored_borderless_text_material"
-        android:textColor="@color/abc_btn_colored_text_material"
-        android:layout_below="@+id/txtSpeechInput"
-        android:layout_alignStart="@+id/NotizButton"
-        android:layout_marginTop="58dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Anrufe"
-        android:id="@+id/AnrufButton"
-        android:background="@color/abc_btn_colored_borderless_text_material"
-        android:textColor="@color/abc_btn_colored_text_material"
-        android:allowUndo="true"
-        android:layout_alignBottom="@+id/txtSpeechInput"
-        android:layout_alignStart="@+id/MusikButton" />
 
 </RelativeLayout>
