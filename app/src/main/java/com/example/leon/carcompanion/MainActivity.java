@@ -12,13 +12,14 @@ package com.example.leon.carcompanion;
         import android.speech.RecognizerIntent;
         import android.support.v4.content.ContextCompat;
         import android.view.View;
+        import android.widget.EditText;
         import android.widget.ImageButton;
         import android.widget.TextView;
         import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
-    private String antwort;
+    private String answer;
     private TextView txtSpeechInput;
     private ImageButton btnSpeak;
     private final int REQ_CODE_SPEECH_INPUT = 100;
@@ -88,11 +89,15 @@ public class MainActivity extends Activity {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     txtSpeechInput.setText(result.get(0));
-                    antwort = result.get(0);
+                    answer = result.get(0);
 
-                    if(antwort.toUpperCase().equals("HALLO")){
-
+                    switch (answer.toUpperCase()){
+                        case "NOTIZEN": changeToNotes(); break;
+                        case "ANRUFE": changeToCalls(); break;
+                        case "SMS": changeToSMS(); break;
+                        case "SPOTIFY": changeToSpotify(); break;
                     }
+
                 }
 
                 break;
@@ -101,6 +106,25 @@ public class MainActivity extends Activity {
         }
     }
 
+    public void changeToNotes (){
+            Intent intent = new Intent(this, NoteActivity.class);
+            startActivity(intent);
+        }
+
+    public void changeToCalls(){
+        Intent intent = new Intent(this, CallActivity.class);
+        startActivity(intent);
+    }
+
+    public void changeToSMS(){
+        Intent intent = new Intent(this, SMSActivity.class);
+        startActivity(intent);
+    }
+
+    public void changeToSpotify(){
+        Intent intent = new Intent (this, SpotifyActivity.class);
+        startActivity(intent);
+    }
 
   /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
