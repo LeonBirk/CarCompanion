@@ -9,4 +9,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.leon.carcompanion.SMSActivity">
 
+    <TextView
+        android:id="@+id/textPhonenumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Telefonnummer"/>
+    <EditText
+        android:id="@+id/phoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:layout_below="@id/textPhonenumber"/>
+    <TextView
+        android:id="@+id/textMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nachricht"
+        android:layout_below="@id/phoneNumber"/>
+    <EditText
+        android:id="@+id/smsMessage"
+        android:layout_width="match_parent"
+        android:layout_height="200px"
+        android:layout_below="@id/textMessage"/>
+    <Button
+        android:id="@+id/sendSMS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Senden"
+        android:layout_below="@id/smsMessage"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>
