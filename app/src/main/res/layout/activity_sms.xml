@@ -13,26 +13,37 @@
         android:id="@+id/textPhonenumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Telefonnummer"/>
+        android:text="Telefonnummer"
+        android:layout_below="@+id/btnSpeak"
+        android:layout_alignParentStart="true" />
     <ImageButton
         android:id="@+id/btnSpeak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@null"
         android:src="@drawable/ico_mic_black"
-        android:layout_toRightOf="@+id/textPhonenumber"/>
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
     <EditText
         android:id="@+id/phoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="phone"
         android:layout_below="@id/textPhonenumber"/>
+    <ImageButton
+        android:id="@+id/btnSpeakMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ico_mic_black"
+        android:layout_below="@+id/phoneNumber"
+        android:layout_alignParentStart="true" />
     <TextView
         android:id="@+id/textMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Nachricht"
-        android:layout_below="@id/phoneNumber"/>
+        android:layout_below="@id/btnSpeakMsg"/>
     <EditText
         android:id="@+id/smsMessage"
         android:layout_width="match_parent"
@@ -45,4 +56,12 @@
         android:text="Senden"
         android:layout_below="@id/smsMessage"
         android:layout_centerInParent="true"/>
+    <ImageButton
+        android:id="@+id/btnSpeakSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ico_mic_black"
+        android:layout_below="@+id/sendSMS"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.os.Build;
 import android.speech.RecognizerIntent;
 import android.support.v4.content.ContextCompat;
@@ -27,10 +28,13 @@ public class SMSActivity extends AppCompatActivity {
 
     Button sendSMS;
     ImageButton btnSpeak;
+    ImageButton btnSpeakMsg;
+    ImageButton btnSpeakSend;
     EditText phoneNumber;
     EditText smsMessage;
-    public static final int PERMISSION_REQUEST = 1;
+    private static final int PERMISSION_REQUEST = 1;
     private final int REQ_CODE_SPEECH_INPUT = 100;
+    private int editTextChoose = 0; //0=Empfänger 1=Nachricht
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,8 @@ public class SMSActivity extends AppCompatActivity {
 
         sendSMS = (Button) findViewById(R.id.sendSMS);
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
+        btnSpeakMsg = (ImageButton) findViewById(R.id.btnSpeakMsg);
+        btnSpeakSend = (ImageButton) findViewById(R.id.btnSpeakSend);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
         smsMessage = (EditText) findViewById(R.id.smsMessage);
 
@@ -55,10 +61,25 @@ public class SMSActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                editTextChoose=0;
                 promptSpeechInput();
             }
         });
 
+        btnSpeakMsg.setOnClickListener(new OnClickListener()
+        {
+            public void onClick(View v){
+                editTextChoose=1;
+                promptSpeechInput();
+            }
+        });
+
+        btnSpeakSend.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                promptSpeechInput();
+            }
+        });
     }
 
     private void sendSMS(String phone, String message)
@@ -112,8 +133,6 @@ public class SMSActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        String contact = ""; //Input im Telefon/Kontakt Feld
-
         switch (requestCode) {
             case REQ_CODE_SPEECH_INPUT: {
                 if(data == null){
@@ -123,10 +142,16 @@ public class SMSActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    for(int i=0; result.get(i)!=null; i++ ){
-                        contact = contact + result.get(i);
+                    if(result.get(0).toUpperCase().equals("SENDEN")){
+                        String phone = phoneNumber.getText().toString();
+                        String message = smsMessage.getText().toString();
+                        sendSMS(phone, message);
+                    }else if(editTextChoose==0){
+                        phoneNumber.setText(result.get(0));
+                    }else if(editTextChoose==1){
+                        smsMessage.setText(result.get(0));
                     }
-                    phoneNumber.setText(contact);
+
                     //answer = result.get(0);
                 }
                 break;
