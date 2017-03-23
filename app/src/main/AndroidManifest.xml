@@ -33,7 +33,7 @@
         <activity
             android:name=".SMSActivity"
             android:parentActivityName=".MainActivity"
-            android:label="@string/sms_module_name" />
+            android:label="@string/sms_module_name"/>
         <activity
             android:name=".SpotifyActivity"
             android:parentActivityName=".MainActivity"

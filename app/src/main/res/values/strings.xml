@@ -8,8 +8,8 @@
     <string name="tap_on_mic">Tap on mich to speak</string>
     <string name="add_note">+</string>
     <string name="note_module_name">Deine Notizen</string>
-    <string name="spotify_module_name">Dein Spotify</string>
+    <string name="spotify_module_name">Spotify - Deine Musik</string>
     <string name="call_module_name">Deine Anrufe</string>
-    <string name="sms_module_name">Deine Nachrichten</string>
+    <string name="sms_module_name">Deine SMS</string>
     <string name="note_dir_name">Notizen</string>
 </resources>
