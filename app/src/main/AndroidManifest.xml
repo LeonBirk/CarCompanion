@@ -31,10 +31,12 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SMSActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:label="Deine SMS"/>
         <activity
             android:name=".SpotifyActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:label="Spotify - Deine Musik"/>
         <activity
             android:name=".CreateNoteActivity"
             android:parentActivityName=".NoteActivity" />

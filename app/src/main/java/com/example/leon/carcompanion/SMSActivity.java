@@ -112,6 +112,8 @@ public class SMSActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        String contact = ""; //Input im Telefon/Kontakt Feld
+
         switch (requestCode) {
             case REQ_CODE_SPEECH_INPUT: {
                 if(data == null){
@@ -121,12 +123,14 @@ public class SMSActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    phoneNumber.setText(result.get(0));
+                    for(int i=0; result.get(i)!=null; i++ ){
+                        contact = contact + result.get(i);
+                    }
+                    phoneNumber.setText(contact);
                     //answer = result.get(0);
                 }
                 break;
             }
-
         }
     }
 }
