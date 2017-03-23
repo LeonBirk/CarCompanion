@@ -11,9 +11,16 @@
 
     <TextView
         android:id="@+id/textPhonenumber"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Telefonnummer"/>
+    <ImageButton
+        android:id="@+id/btnSpeak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ico_mic_black"
+        android:layout_toRightOf="@+id/textPhonenumber"/>
     <EditText
         android:id="@+id/phoneNumber"
         android:layout_width="match_parent"
