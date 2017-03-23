@@ -1,20 +1,21 @@
 package com.example.leon.carcompanion;
 
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
+
 
 public class CreateNoteActivity extends AppCompatActivity {
+    FileOutputStream stream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,36 +29,53 @@ public class CreateNoteActivity extends AppCompatActivity {
         save_note_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if(isExternalStorageWritable())
+                {
+                    System.out.println("Permission to writing Files is granted.");
+
                 String note_title = edit_note_title.getText().toString();
                 String note_content = edit_note_content.getText().toString();
                 System.out.println("Title is ---> " + note_title );
                 System.out.println("Content is ---> " + note_content);
 
-                BufferedWriter writer;
+                File output = new File(Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_DOCUMENTS) + "/" + NoteActivity.noteDir + "/", note_title + ".txt");
+                    System.out.println("Path to file:" + output.getPath());
+
                 try {
-                    FileOutputStream openedFile = openFileOutput("CarCompNotes", MODE_WORLD_WRITEABLE);
+                    stream = new FileOutputStream(output);
+                    stream.write((note_title + "\n" + note_content).getBytes());
+                    stream.close();
 
-                    writer = new BufferedWriter(new OutputStreamWriter(openedFile));
-                    String eol = System.getProperty("line.separator");
-                    writer.write(note_title + eol);
-                    writer.write(note_content + eol);
-                    writer.close();
-
-                    changeToReadNote();
+                    changeToNotes();
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e){
                     e.printStackTrace();
                 }
+            }else {
+                    System.out.println("Writing to external storage not possible. Please Check App permissions.");}
             }
         });
+
     }
 
-    protected void changeToReadNote(){
+    protected void changeToNotes(){
         finish();
-        Intent intent = new Intent (this, ReadNoteActivity.class);
+        Intent intent = new Intent (this, NoteActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+    /* Checks if external storage is available for read and write */
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
 }

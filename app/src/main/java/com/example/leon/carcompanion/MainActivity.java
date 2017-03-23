@@ -13,7 +13,7 @@ package com.example.leon.carcompanion;
         import android.support.v4.content.ContextCompat;
         import android.util.Log;
         import android.view.View;
-        import android.widget.EditText;
+        import android.widget.Button;
         import android.widget.ImageButton;
         import android.widget.TextView;
         import android.widget.Toast;
@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
     private String answer;
     private TextView txtSpeechInput;
     private ImageButton btnSpeak;
+    private Button btnNotes;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
     @Override
@@ -32,10 +33,7 @@ public class MainActivity extends Activity {
 
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
-
-
-        // hide the action bar
-        // getActionBar().hide();
+        btnNotes = (Button) findViewById(R.id.note_btn);
 
 
         btnSpeak.setOnClickListener(new View.OnClickListener() {
@@ -43,6 +41,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 promptSpeechInput();
+            }
+        });
+
+        btnNotes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToNotes();
             }
         });
 
@@ -160,11 +165,4 @@ public class MainActivity extends Activity {
         startActivity(intent);
     }
 
-  /*  @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R., menu);
-        return true;
-    }
-*/
 }

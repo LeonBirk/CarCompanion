@@ -20,17 +20,22 @@ public class ReadNoteActivity extends AppCompatActivity {
         BufferedReader reader;
 
         try{
-            FileInputStream noteFile =  openFileInput("CarCompNotes");
+            FileInputStream noteFile =  openFileInput("CarCompNotes.txt");
             reader = new BufferedReader(new InputStreamReader(noteFile));
             String line;
             String eol = System.getProperty("line.separator");
+            StringBuilder sb = new StringBuilder();
 
             TextView notesView = (TextView) findViewById(R.id.read_note);
 
             while ((line = reader.readLine()) != null  ){
-                notesView.setText(line);
+                sb.append(line).append(eol);
             }
+
+            notesView.setText(sb.toString());
+
         } catch (FileNotFoundException e){
+            System.out.println("File not found!");
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
