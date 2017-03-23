@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
     private TextView txtSpeechInput;
     private ImageButton btnSpeak;
     private Button btnNotes;
+    private Button btnSMS;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
     @Override
@@ -34,7 +35,7 @@ public class MainActivity extends Activity {
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
         btnNotes = (Button) findViewById(R.id.note_btn);
-
+        btnSMS = (Button) findViewById(R.id.sms_btn);
 
         btnSpeak.setOnClickListener(new View.OnClickListener() {
 
@@ -48,6 +49,13 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 changeToNotes();
+            }
+        });
+
+        btnSMS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToSMS();
             }
         });
 

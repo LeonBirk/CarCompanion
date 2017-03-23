@@ -59,5 +59,15 @@
         android:layout_centerVertical="true"
         android:text="Notizen" />
 
+    <Button
+        android:id="@+id/sms_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="SMS"
+        android:layout_below="@+id/note_btn"/>
+
 
 </RelativeLayout>
