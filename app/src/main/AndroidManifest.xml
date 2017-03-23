@@ -28,13 +28,16 @@
             android:label="@string/note_module_name"/>
         <activity
             android:name=".CallActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:label="@string/call_module_name" />
         <activity
             android:name=".SMSActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:label="@string/sms_module_name" />
         <activity
             android:name=".SpotifyActivity"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:label="@string/spotify_module_name" />
         <activity
             android:name=".CreateNoteActivity"
             android:parentActivityName=".NoteActivity" />

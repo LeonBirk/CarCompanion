@@ -51,13 +51,34 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/call_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Anrufe"
+        android:layout_below="@+id/txtSpeechInput"
+        android:layout_alignStart="@+id/spotify_btn"
+        android:layout_marginTop="42dp" />
+
+    <Button
+        android:id="@+id/spotify_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Spotify"
+        android:layout_below="@+id/call_btn"/>
+
+    <Button
         android:id="@+id/note_btn"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="Notizen" />
+        android:text="Notizen"
+        android:layout_below="@+id/spotify_btn"/>
 
     <Button
         android:id="@+id/sms_btn"

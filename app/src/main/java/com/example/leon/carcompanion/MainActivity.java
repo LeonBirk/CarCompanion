@@ -23,6 +23,8 @@ public class MainActivity extends Activity {
     private String answer;
     private TextView txtSpeechInput;
     private ImageButton btnSpeak;
+    private Button btnCalls;
+    private Button btnSpotify;
     private Button btnNotes;
     private Button btnSMS;
     private final int REQ_CODE_SPEECH_INPUT = 100;
@@ -34,6 +36,8 @@ public class MainActivity extends Activity {
 
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
+        btnCalls = (Button) findViewById(R.id.call_btn);
+        btnSpotify = (Button) findViewById(R.id.spotify_btn);
         btnNotes = (Button) findViewById(R.id.note_btn);
         btnSMS = (Button) findViewById(R.id.sms_btn);
 
@@ -42,6 +46,20 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 promptSpeechInput();
+            }
+        });
+
+        btnCalls.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToCalls();
+            }
+        });
+
+        btnSpotify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToSpotify();
             }
         });
 
