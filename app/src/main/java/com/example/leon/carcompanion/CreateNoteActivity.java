@@ -14,7 +14,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 
-public class CreateNoteActivity extends AppCompatActivity {
+public class CreateNoteActivity extends RootActivity {
     FileOutputStream stream;
 
     @Override

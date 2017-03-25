@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class NoteActivity extends AppCompatActivity {
+public class NoteActivity extends RootActivity {
 
     private ListView notesList;
     private Scanner inFile1;

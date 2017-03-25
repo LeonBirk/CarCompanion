@@ -40,7 +40,8 @@
             android:label="@string/spotify_module_name" />
         <activity
             android:name=".CreateNoteActivity"
-            android:parentActivityName=".NoteActivity" />
+            android:parentActivityName=".NoteActivity"
+            android:label="Neue Notiz"/>
         <activity
             android:name=".ReadNoteActivity"
             android:parentActivityName=".NoteActivity"

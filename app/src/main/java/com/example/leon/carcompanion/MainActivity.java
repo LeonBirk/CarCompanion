@@ -18,7 +18,7 @@ package com.example.leon.carcompanion;
         import android.widget.TextView;
         import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends RootActivity {
 
     private String answer;
     private TextView txtSpeechInput;
