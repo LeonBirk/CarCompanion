@@ -31,7 +31,6 @@ public class SMSActivity extends AppCompatActivity {
     EditText phoneNumber;
     EditText smsMessage;
     private String answer;
-    private String [] parts;
     private String text = "";        //Text for Empfänger or Message
     private static final int PERMISSION_REQUEST = 1;
     private final int REQ_CODE_SPEECH_INPUT = 100;
@@ -162,25 +161,23 @@ public class SMSActivity extends AppCompatActivity {
                             switch (wort.toUpperCase()){
                                 case "EMPFÄNGER":
                                     found = true;
-                                    parts = s.split(" ");
-                                    for(int i=0; i<parts.length; i++){
-                                        text = text + parts[i];
-                                    }
+                                    text = "";
+                                    text = s.substring(10, s.length());
                                     phoneNumber.setText(text);
                                     break;
                                 case "NACHRICHT":
                                     found = true;
-                                    parts = s.split(" ");
-                                    for(int i=0; i<parts.length; i++){
-                                        text = text + parts[i];
-                                    }
+                                    text = "";
+                                    text = s.substring(10, s.length());
                                     smsMessage.setText(text);
                                     break;
                                 case "SENDEN":
                                     found = true;
-                                    String phone = phoneNumber.getText().toString();
-                                    String message = smsMessage.getText().toString();
-                                    sendSMS(phone, message);
+                                    if(phoneNumber!=null && smsMessage!=null){
+                                        String phone = phoneNumber.getText().toString();
+                                        String message = smsMessage.getText().toString();
+                                        sendSMS(phone, message);
+                                    }
                                     break;
                             }
                             if (found) break; //Aus der Schleife
