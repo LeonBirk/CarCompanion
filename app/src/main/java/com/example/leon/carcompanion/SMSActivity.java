@@ -30,6 +30,9 @@ public class SMSActivity extends AppCompatActivity {
     ImageButton btnSpeakSend;
     EditText phoneNumber;
     EditText smsMessage;
+    private String answer;
+    private String [] parts;
+    private String text = "";        //Text for Empfänger or Message
     private static final int PERMISSION_REQUEST = 1;
     private final int REQ_CODE_SPEECH_INPUT = 100;
     //private int editTextChoose = 0; //0=Empfänger 1=Nachricht
@@ -118,6 +121,7 @@ public class SMSActivity extends AppCompatActivity {
                     //txtSpeechInput.setText("No Speech input recognized");
                 }
 
+                /**
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
@@ -132,7 +136,60 @@ public class SMSActivity extends AppCompatActivity {
                     }
 
                     //answer = result.get(0);
+                } */
+
+                if (resultCode == RESULT_OK && null != data) {
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    //txtSpeechInput.setText(result.get(0));
+                    answer = result.get(0);
+
+                    for (String s:result) {
+                        Log.d("MAIN", s);
+                    }
+
+                    boolean found = false; //Prüfvariable
+
+                    /*
+                    Die ArrayList @result hat mehrere Antworten. Diese werden jeweils in die
+                    einzelnen Worte aufgeteilt und dann auf definierte Schlagwörter geprüft
+                     */
+                    for (String s:result) { //Aufteilung in "Interpretationen"
+                        String[] split = s.split(" ");
+                        for (String wort:split) { //Aufteilung in die einzelnen Wörter
+
+                            Log.d("MAIN", wort);
+                            switch (wort.toUpperCase()){
+                                case "EMPFÄNGER":
+                                    found = true;
+                                    parts = s.split(" ");
+                                    for(int i=0; i<parts.length; i++){
+                                        text = text + parts[i];
+                                    }
+                                    phoneNumber.setText(text);
+                                    break;
+                                case "NACHRICHT":
+                                    found = true;
+                                    parts = s.split(" ");
+                                    for(int i=0; i<parts.length; i++){
+                                        text = text + parts[i];
+                                    }
+                                    smsMessage.setText(text);
+                                    break;
+                                case "SENDEN":
+                                    found = true;
+                                    String phone = phoneNumber.getText().toString();
+                                    String message = smsMessage.getText().toString();
+                                    sendSMS(phone, message);
+                                    break;
+                            }
+                            if (found) break; //Aus der Schleife
+                        }
+
+                        if (found) break;
+                    }
                 }
+
                 break;
             }
         }
