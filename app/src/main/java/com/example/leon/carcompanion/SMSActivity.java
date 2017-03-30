@@ -27,8 +27,6 @@ import java.util.Locale;
 public class SMSActivity extends AppCompatActivity {
 
     Button sendSMS;
-    ImageButton btnSpeak;
-    ImageButton btnSpeakMsg;
     ImageButton btnSpeakSend;
     EditText phoneNumber;
     EditText smsMessage;
@@ -42,8 +40,6 @@ public class SMSActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sms);
 
         sendSMS = (Button) findViewById(R.id.sendSMS);
-        btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
-        btnSpeakMsg = (ImageButton) findViewById(R.id.btnSpeakMsg);
         btnSpeakSend = (ImageButton) findViewById(R.id.btnSpeakSend);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
         smsMessage = (EditText) findViewById(R.id.smsMessage);
@@ -54,23 +50,6 @@ public class SMSActivity extends AppCompatActivity {
                 String phone = phoneNumber.getText().toString();
                 String message = smsMessage.getText().toString();
                 sendSMS(phone, message);
-            }
-        });
-
-        btnSpeak.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                //editTextChoose=0;
-                promptSpeechInput();
-            }
-        });
-
-        btnSpeakMsg.setOnClickListener(new OnClickListener()
-        {
-            public void onClick(View v){
-                //editTextChoose=1;
-                promptSpeechInput();
             }
         });
 
