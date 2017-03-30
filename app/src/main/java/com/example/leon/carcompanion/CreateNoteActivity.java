@@ -34,27 +34,35 @@ public class CreateNoteActivity extends RootActivity {
                 {
                     System.out.println("Permission to writing Files is granted.");
 
-                String note_title = edit_note_title.getText().toString();
-                String note_content = edit_note_content.getText().toString();
-                System.out.println("Title is ---> " + note_title );
-                System.out.println("Content is ---> " + note_content);
+                    String note_title = edit_note_title.getText().toString();
+                    String note_content = edit_note_content.getText().toString();
 
-                File output = new File(Environment.getExternalStoragePublicDirectory(
-                        Environment.DIRECTORY_DOCUMENTS) + "/" + NoteActivity.noteDir + "/", note_title + ".txt");
-                    System.out.println("Path to file:" + output.getPath());
+                    if(!note_title.isEmpty() && !note_content.isEmpty()){
+                        System.out.println("Title is ---> " + note_title );
+                        System.out.println("Content is ---> " + note_content);
 
-                try {
-                    stream = new FileOutputStream(output);
-                    stream.write((note_title + "\n" + note_content).getBytes());
-                    stream.close();
+                        File output = new File(Environment.getExternalStoragePublicDirectory(
+                                Environment.DIRECTORY_DOCUMENTS) + "/" + NoteActivity.noteDir + "/", note_title + ".txt");
+                        System.out.println("Path to file:" + output.getPath());
 
-                    changeToNotes();
+                        try {
+                            stream = new FileOutputStream(output);
+                            stream.write((note_title + "\n" + note_content).getBytes());
+                            stream.close();
 
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e){
-                    e.printStackTrace();
+                            changeToNotes();
+
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (IOException e){
+                            e.printStackTrace();
+                        }
+                    } else if(note_title.isEmpty()) {
+                            edit_note_title.setText(R.string.note_title_empty_message);
+                    } if(note_content.isEmpty()){
+                            edit_note_content.setText(R.string.note_content_empty_content);
                 }
+
             }else {
                     System.out.println("Writing to external storage not possible. Please Check App permissions.");}
             }

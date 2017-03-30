@@ -12,7 +12,7 @@ public class RootActivity extends Activity {
         onStartCount = 1;
         if (savedInstanceState == null) // 1st time
         {
-            this.overridePendingTransition(R.anim.anim_slide_in_left,
+            this.overridePendingTransition(R.anim.anim_slide_in_right,
                     R.anim.anim_slide_out_left);
         } else // already created so reverse animation
         {
@@ -25,7 +25,7 @@ public class RootActivity extends Activity {
         // TODO Auto-generated method stub
         super.onStart();
         if (onStartCount > 1) {
-            this.overridePendingTransition(R.anim.anim_slide_in_right,
+            this.overridePendingTransition(R.anim.anim_slide_in_left,
                     R.anim.anim_slide_out_right);
 
         } else if (onStartCount == 1) {
