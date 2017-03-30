@@ -12,4 +12,6 @@
     <string name="call_module_name">Deine Anrufe</string>
     <string name="sms_module_name">Deine SMS</string>
     <string name="note_dir_name">Notizen</string>
+    <string name="note_title_empty_message">Bitte einen Titel eintragen.</string>
+    <string name="note_content_empty_content">Der Inhalt der Notiz darf nicht leer sein.</string>
 </resources>
