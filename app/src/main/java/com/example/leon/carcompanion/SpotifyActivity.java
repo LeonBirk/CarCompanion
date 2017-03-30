@@ -22,9 +22,9 @@ public class SpotifyActivity extends AppCompatActivity implements
 {
 
 
-    private static final String CLIENT_ID = "23a76025dd7a43ddbcf52eaeceb80adb";
+    private static final String CLIENT_ID = "53310b0060a3473393b4a425b08aa90f";
 
-    private static final String REDIRECT_URI = "spotify-test://callback";
+    private static final String REDIRECT_URI = "carcompanion://callback";
 
     // Request code that will be used to verify if the result comes from correct activity
     // Can be any integer
@@ -35,7 +35,7 @@ public class SpotifyActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_spotify);
 
         AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
                 AuthenticationResponse.Type.TOKEN,
