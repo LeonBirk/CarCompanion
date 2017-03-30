@@ -72,24 +72,16 @@ public class SpotifyActivity extends AppCompatActivity implements
         }
     }
 
-    //String [] playlist = {"spotify:track:47VRtROAdociHgtuVZNoBL", "spotify:track:0SsQNbkgmhYjR6zS5dOGEF", "spotify:track:2TpxZ7JUBn3uw46aR7qd6V"};
+    View play = findViewById(R.id.playButton);
+    View pause = findViewById(R.id.pauseButton);
 
     public void clickNext (View view){
-        //String metaData = String.valueOf(mPlayer.getMetadata());
-        //TextView tv = (TextView) findViewById(R.id.metadata);
-        //tv.setText(metaData);
-        // int i = 0;
-        //int x = 0;
-        //for(i = 1; i<playlist.length; x++){
-        //  mPlayer.playUri(playlist[i], 0, 0);
-        //}
-        //i++;
         mPlayer.skipToNext();
+        play.setVisibility(View.INVISIBLE);
+        pause.setVisibility(View.VISIBLE);
     }
     public void clickPlay (View view){
         mPlayer.resume();
-        View play = findViewById(R.id.playButton);
-        View pause = findViewById(R.id.pauseButton);
         play.setVisibility(View.INVISIBLE);
         pause.setVisibility(View.VISIBLE);
 
@@ -97,12 +89,13 @@ public class SpotifyActivity extends AppCompatActivity implements
 
     public void clickBack (View view){
         mPlayer.skipToPrevious();
+        play.setVisibility(View.INVISIBLE);
+        pause.setVisibility(View.VISIBLE);
+
     }
 
     public void clickPause (View view){
         mPlayer.pause();
-        View pause = findViewById(R.id.pauseButton);
-        View play = findViewById(R.id.playButton);
         pause.setVisibility(View.INVISIBLE);
         play.setVisibility(View.VISIBLE);
     }
