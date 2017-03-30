@@ -34,7 +34,7 @@ public class SMSActivity extends AppCompatActivity {
     EditText smsMessage;
     private static final int PERMISSION_REQUEST = 1;
     private final int REQ_CODE_SPEECH_INPUT = 100;
-    private int editTextChoose = 0; //0=Empfänger 1=Nachricht
+    //private int editTextChoose = 0; //0=Empfänger 1=Nachricht
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class SMSActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                editTextChoose=0;
+                //editTextChoose=0;
                 promptSpeechInput();
             }
         });
@@ -69,7 +69,7 @@ public class SMSActivity extends AppCompatActivity {
         btnSpeakMsg.setOnClickListener(new OnClickListener()
         {
             public void onClick(View v){
-                editTextChoose=1;
+                //editTextChoose=1;
                 promptSpeechInput();
             }
         });
@@ -146,9 +146,9 @@ public class SMSActivity extends AppCompatActivity {
                         String phone = phoneNumber.getText().toString();
                         String message = smsMessage.getText().toString();
                         sendSMS(phone, message);
-                    }else if(editTextChoose==0){
+                    }else if(result.get(0).toUpperCase().equals("EMPFÄNGER")){
                         phoneNumber.setText(result.get(0));
-                    }else if(editTextChoose==1){
+                    }else if(result.get(0).toUpperCase().equals("NACHRICHT")){
                         smsMessage.setText(result.get(0));
                     }
 

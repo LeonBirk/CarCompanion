@@ -64,4 +64,9 @@
         android:src="@drawable/ico_mic_black"
         android:layout_below="@+id/sendSMS"
         android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnSpeakSend"
+        android:text="Befehle: EMPFÄNGER, NACHRICHT, SENDEN"/>
 </RelativeLayout>
