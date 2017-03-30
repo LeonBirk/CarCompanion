@@ -21,9 +21,7 @@ public class SpotifyActivity extends AppCompatActivity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
 {
 
-
     private static final String CLIENT_ID = "53310b0060a3473393b4a425b08aa90f";
-
     private static final String REDIRECT_URI = "carcompanion://callback";
 
     // Request code that will be used to verify if the result comes from correct activity
@@ -80,18 +78,17 @@ public class SpotifyActivity extends AppCompatActivity implements
         play.setVisibility(View.INVISIBLE);
         pause.setVisibility(View.VISIBLE);
     }
+
     public void clickPlay (View view){
         mPlayer.resume();
         play.setVisibility(View.INVISIBLE);
         pause.setVisibility(View.VISIBLE);
-
     }
 
     public void clickBack (View view){
         mPlayer.skipToPrevious();
         play.setVisibility(View.INVISIBLE);
         pause.setVisibility(View.VISIBLE);
-
     }
 
     public void clickPause (View view){
@@ -126,15 +123,11 @@ public class SpotifyActivity extends AppCompatActivity implements
                 break;
         }
     }
+
     @Override
     public void onLoggedIn() {
         Log.d("SpotifyActivity", "User logged in");
-
         mPlayer.playUri("spotify:user:spotifycharts:playlist:37i9dQZEVXbMDoHDwVN2tF", 0, 0);
-        //mPlayer.playUri("spotify:track:6OlsZzPiKA0i2BpqMkbPie", 0, 0);
-        //mPlayer.queue("spotify:track:47VRtROAdociHgtuVZNoBL");
-        //mPlayer.queue("spotify:track:0SsQNbkgmhYjR6zS5dOGEF");
-
     }
 
     @Override
