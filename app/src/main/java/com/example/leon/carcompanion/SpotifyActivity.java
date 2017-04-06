@@ -21,11 +21,11 @@ public class SpotifyActivity extends AppCompatActivity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
 {
 
-    private static final String CLIENT_ID = "53310b0060a3473393b4a425b08aa90f";
+    //wird für die Authentifizierung mit Spotify benötigt und erhält man beim Anlegen eines Spotify-Projektes
+    private static final String CLIENT_ID = "9f5c963a850a4094b7448c6fc0730d14";
     private static final String REDIRECT_URI = "carcompanion://callback";
 
     // Request code that will be used to verify if the result comes from correct activity
-    // Can be any integer
     private static final int REQUEST_CODE = 1337;
 
     private Player mPlayer;
@@ -48,7 +48,7 @@ public class SpotifyActivity extends AppCompatActivity implements
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
 
-        // Check if result comes from the correct activity
+        // Prüfen, ob Ergebnis von der richtigen Aktivität kommt
         if (requestCode == REQUEST_CODE) {
             AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
             if (response.getType() == AuthenticationResponse.Type.TOKEN) {
@@ -70,36 +70,42 @@ public class SpotifyActivity extends AppCompatActivity implements
         }
     }
 
-    View play = findViewById(R.id.playButton);
-    View pause = findViewById(R.id.pauseButton);
 
     public void clickNext (View view){
         mPlayer.skipToNext();
+        View play = findViewById(R.id.playButton);
+        View pause = findViewById(R.id.pauseButton);
         play.setVisibility(View.INVISIBLE);
         pause.setVisibility(View.VISIBLE);
     }
 
     public void clickPlay (View view){
         mPlayer.resume();
+        View play = findViewById(R.id.playButton);
+        View pause = findViewById(R.id.pauseButton);
         play.setVisibility(View.INVISIBLE);
         pause.setVisibility(View.VISIBLE);
     }
 
     public void clickBack (View view){
         mPlayer.skipToPrevious();
+        View play = findViewById(R.id.playButton);
+        View pause = findViewById(R.id.pauseButton);
         play.setVisibility(View.INVISIBLE);
         pause.setVisibility(View.VISIBLE);
     }
 
     public void clickPause (View view){
         mPlayer.pause();
+        View play = findViewById(R.id.playButton);
+        View pause = findViewById(R.id.pauseButton);
         pause.setVisibility(View.INVISIBLE);
         play.setVisibility(View.VISIBLE);
     }
 
     @Override
     protected void onDestroy() {
-        // VERY IMPORTANT! This must always be called or else you will leak resources
+        // Beim schließen der App wird der Player gelöscht
         Spotify.destroyPlayer(this);
         super.onDestroy();
     }
@@ -127,6 +133,7 @@ public class SpotifyActivity extends AppCompatActivity implements
     @Override
     public void onLoggedIn() {
         Log.d("SpotifyActivity", "User logged in");
+        // Playlist, welche abgespielt wird
         mPlayer.playUri("spotify:user:spotifycharts:playlist:37i9dQZEVXbMDoHDwVN2tF", 0, 0);
     }
 
