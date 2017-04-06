@@ -1,5 +1,6 @@
 package com.example.leon.carcompanion;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +11,7 @@ import android.util.Log;
  * Created by FelixH on 06.04.2017.
  */
 
-public class SmsReceiver {
+public class SmsReceiver extends BroadcastReceiver {
     private String TAG = SmsReceiver.class.getSimpleName();
 
     public SmsReceiver() {
@@ -38,7 +39,7 @@ public class SmsReceiver {
                 str += "SMS from " + msgs[i].getOriginatingAddress() + " : ";
                 // Fetch the text message
                 str += msgs[i].getMessageBody().toString();
-                // Newline 🙂
+                // Newline
                 str += "\n";
             }
 

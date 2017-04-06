@@ -39,6 +39,8 @@ public class SMSActivity extends AppCompatActivity {
     private static final int PERMISSION_REQUEST = 1;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
+    //SmsReceiver receiver = new SmsReceiver();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
