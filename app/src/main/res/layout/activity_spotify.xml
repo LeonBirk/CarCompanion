@@ -84,4 +84,12 @@
         android:layout_alignTop="@+id/nextButton"
         android:layout_toLeftOf="@+id/playButton"
         android:layout_toStartOf="@+id/playButton" />
+    <ImageButton
+        android:id="@+id/btnSpeakInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:src="@drawable/ico_mic"
+        android:layout_below="@+id/playButton"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

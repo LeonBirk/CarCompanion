@@ -1,10 +1,18 @@
 package com.example.leon.carcompanion;
 
+import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.speech.RecognizerIntent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
@@ -17,9 +25,19 @@ import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
+import static com.example.leon.carcompanion.R.string.speech_not_supported;
+
 public class SpotifyActivity extends AppCompatActivity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
 {
+
+    private final int REQ_CODE_SPEECH_INPUT = 100;
+    private String answer;
+    private TextView txtSpeechInput;
+    ImageButton btnSpeakInput;
 
     //wird für die Authentifizierung mit Spotify benötigt und erhält man beim Anlegen eines Spotify-Projektes
     private static final String CLIENT_ID = "9f5c963a850a4094b7448c6fc0730d14";
@@ -30,10 +48,13 @@ public class SpotifyActivity extends AppCompatActivity implements
 
     private Player mPlayer;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spotify);
+        btnSpeakInput = (ImageButton) findViewById(R.id.btnSpeakInput);
+
 
         AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
                 AuthenticationResponse.Type.TOKEN,
@@ -42,15 +63,47 @@ public class SpotifyActivity extends AppCompatActivity implements
         AuthenticationRequest request = builder.build();
 
         AuthenticationClient.openLoginActivity(this, REQUEST_CODE, request);
+
+        btnSpeakInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                promptSpeechInput();
+            }
+        });
+    }
+
+    /**
+     * Showing google speech input dialog
+     * */
+    private void promptSpeechInput() {
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.RECORD_AUDIO);
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED){
+            //txtSpeechInput.setText("Permission Granted");
+        }
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                getString(R.string.speech_prompt));
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+            Toast.makeText(getApplicationContext(),
+                    getString(R.string.speech_not_supported),
+                    Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
         // Prüfen, ob Ergebnis von der richtigen Aktivität kommt
         if (requestCode == REQUEST_CODE) {
-            AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
+            AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, data);
             if (response.getType() == AuthenticationResponse.Type.TOKEN) {
                 Config playerConfig = new Config(this, response.getAccessToken(), CLIENT_ID);
                 Spotify.getPlayer(playerConfig, this, new SpotifyPlayer.InitializationObserver() {
@@ -68,10 +121,68 @@ public class SpotifyActivity extends AppCompatActivity implements
                 });
             }
         }
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if(data == null){
+                    txtSpeechInput.setText("No Speech input recognized");
+                }
+
+                if (resultCode == RESULT_OK && null != data) {
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    txtSpeechInput.setText(result.get(0));
+                    answer = result.get(0);
+
+                    for (String s:result) {
+                        Log.d("MAIN", s);
+                    }
+
+                    boolean found = false; //Prüfvariable
+
+                    /*
+                    Die ArrayList @result hat mehrere Antworten. Diese werden jeweils in die
+                    einzelnen Worte aufgeteilt und dann auf definierte Schlagwörter geprüft
+                     */
+                    for (String s:result) { //Aufteilung in "Interpretationen"
+                        String[] split = s.split(" ");
+                        for (String wort:split) { //Aufteilung in die einzelnen Wörter
+
+                            Log.d("MAIN", wort);
+                            switch (wort.toUpperCase()){
+                                case "WEITER":
+                                    found = true;
+                                    clickNext();
+                                    break;
+                                case "ZURÜCK":
+                                    found = true;
+                                    clickBack();
+                                    break;
+                                case "PAUSE":
+                                    found = true;
+                                    clickPause();
+                                    break;
+                                case "PLAY":
+                                    found = true;
+                                    clickPlay();
+                                    break;
+                            }
+                            if (found) break; //Aus der Schleife
+                        }
+
+                        if (found) break;
+                    }
+
+
+                }
+
+                break;
+            }
+
+        }
     }
 
 
-    public void clickNext (View view){
+    public void clickNext(){
         mPlayer.skipToNext();
         View play = findViewById(R.id.playButton);
         View pause = findViewById(R.id.pauseButton);
@@ -79,7 +190,7 @@ public class SpotifyActivity extends AppCompatActivity implements
         pause.setVisibility(View.VISIBLE);
     }
 
-    public void clickPlay (View view){
+    public void clickPlay (){
         mPlayer.resume();
         View play = findViewById(R.id.playButton);
         View pause = findViewById(R.id.pauseButton);
@@ -87,7 +198,7 @@ public class SpotifyActivity extends AppCompatActivity implements
         pause.setVisibility(View.VISIBLE);
     }
 
-    public void clickBack (View view){
+    public void clickBack (){
         mPlayer.skipToPrevious();
         View play = findViewById(R.id.playButton);
         View pause = findViewById(R.id.pauseButton);
@@ -95,7 +206,7 @@ public class SpotifyActivity extends AppCompatActivity implements
         pause.setVisibility(View.VISIBLE);
     }
 
-    public void clickPause (View view){
+    public void clickPause (){
         mPlayer.pause();
         View play = findViewById(R.id.playButton);
         View pause = findViewById(R.id.pauseButton);
@@ -156,4 +267,6 @@ public class SpotifyActivity extends AppCompatActivity implements
     public void onConnectionMessage(String message) {
         Log.d("SpotifyActivity", "Received connection message: " + message);
     }
+
+
 }
