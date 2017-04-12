@@ -49,11 +49,13 @@ public class SpotifyActivity extends AppCompatActivity implements
     private Player mPlayer;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spotify);
         btnSpeakInput = (ImageButton) findViewById(R.id.btnSpeakInput);
+
 
 
         AuthenticationRequest.Builder builder = new AuthenticationRequest.Builder(CLIENT_ID,
@@ -76,6 +78,8 @@ public class SpotifyActivity extends AppCompatActivity implements
      * Showing google speech input dialog
      * */
     private void promptSpeechInput() {
+        View view = findViewById(R.id.textView).getRootView();
+        clickPause(view);
         int permissionCheck = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.RECORD_AUDIO);
         if (permissionCheck == PackageManager.PERMISSION_GRANTED){
@@ -101,6 +105,8 @@ public class SpotifyActivity extends AppCompatActivity implements
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        View view = findViewById(R.id.textView).getRootView();
+
         // Prüfen, ob Ergebnis von der richtigen Aktivität kommt
         if (requestCode == REQUEST_CODE) {
             AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, data);
@@ -124,14 +130,14 @@ public class SpotifyActivity extends AppCompatActivity implements
         switch (requestCode) {
             case REQ_CODE_SPEECH_INPUT: {
                 if(data == null){
-                    txtSpeechInput.setText("No Speech input recognized");
+                    //txtSpeechInput.setText("No Speech input recognized");
                 }
 
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    txtSpeechInput.setText(result.get(0));
-                    answer = result.get(0);
+                    //txtSpeechInput.setText(result.get(0));
+                    //answer = result.get(0);
 
                     for (String s:result) {
                         Log.d("MAIN", s);
@@ -151,19 +157,19 @@ public class SpotifyActivity extends AppCompatActivity implements
                             switch (wort.toUpperCase()){
                                 case "WEITER":
                                     found = true;
-                                    clickNext();
+                                    clickNext(view);
                                     break;
                                 case "ZURÜCK":
                                     found = true;
-                                    clickBack();
+                                    clickBack(view);
                                     break;
                                 case "PAUSE":
                                     found = true;
-                                    clickPause();
+                                    clickPause(view);
                                     break;
                                 case "PLAY":
                                     found = true;
-                                    clickPlay();
+                                    clickPlay(view);
                                     break;
                             }
                             if (found) break; //Aus der Schleife
@@ -182,7 +188,7 @@ public class SpotifyActivity extends AppCompatActivity implements
     }
 
 
-    public void clickNext(){
+    public void clickNext(View view){
         mPlayer.skipToNext();
         View play = findViewById(R.id.playButton);
         View pause = findViewById(R.id.pauseButton);
@@ -190,7 +196,7 @@ public class SpotifyActivity extends AppCompatActivity implements
         pause.setVisibility(View.VISIBLE);
     }
 
-    public void clickPlay (){
+    public void clickPlay (View view){
         mPlayer.resume();
         View play = findViewById(R.id.playButton);
         View pause = findViewById(R.id.pauseButton);
@@ -198,7 +204,7 @@ public class SpotifyActivity extends AppCompatActivity implements
         pause.setVisibility(View.VISIBLE);
     }
 
-    public void clickBack (){
+    public void clickBack (View view){
         mPlayer.skipToPrevious();
         View play = findViewById(R.id.playButton);
         View pause = findViewById(R.id.pauseButton);
@@ -206,7 +212,7 @@ public class SpotifyActivity extends AppCompatActivity implements
         pause.setVisibility(View.VISIBLE);
     }
 
-    public void clickPause (){
+    public void clickPause (View view){
         mPlayer.pause();
         View play = findViewById(R.id.playButton);
         View pause = findViewById(R.id.pauseButton);
