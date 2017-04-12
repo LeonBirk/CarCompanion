@@ -172,15 +172,18 @@ public class SpotifyActivity extends AppCompatActivity implements
                                     clickPlay(view);
                                     break;
                             }
-                            if (found) break; //Aus der Schleife
+                            if (found)
+                                break; //Aus der Schleife
                         }
 
-                        if (found) break;
+                        if (found)
+                            break;
+
                     }
 
 
                 }
-
+                    clickPlay(view);
                 break;
             }
 
