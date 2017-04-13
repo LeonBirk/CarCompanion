@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.speech.RecognizerIntent;
 import android.support.v4.content.ContextCompat;
@@ -22,10 +23,9 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class CallActivity extends AppCompatActivity {
-    Button sendSMS;
+    Button btnStartCall;
     ImageButton btnCallSpeak;
-    EditText phoneNumber;
-    EditText smsMessage;
+    EditText editTextCall;
     private String answer;
     private String text = "";        //Text for Empfänger or Message
     private static final int PERMISSION_REQUEST = 1;
@@ -38,17 +38,16 @@ public class CallActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
 
-        sendSMS = (Button) findViewById(R.id.sendSMS);
+        btnStartCall = (Button) findViewById(R.id.btnStartCall);
         btnCallSpeak = (ImageButton) findViewById(R.id.btnCallSpeak);
-        phoneNumber = (EditText) findViewById(R.id.phoneNumber);
-        smsMessage = (EditText) findViewById(R.id.smsMessage);
+        editTextCall = (EditText) findViewById(R.id.editTextCall);
 
-        sendSMS.setOnClickListener(new View.OnClickListener()
+
+        btnStartCall.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v){
-                String phone = phoneNumber.getText().toString();
-                String message = smsMessage.getText().toString();
-                sendSMS(phone, message);
+                String phone = editTextCall.getText().toString();
+                startCall(phone);
             }
         });
 
@@ -60,23 +59,30 @@ public class CallActivity extends AppCompatActivity {
         });
     }
 
-    private void sendSMS(String phone, String message)
+
+
+
+
+    private void startCall(String phone)
     {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.SEND_SMS)
+            if (checkSelfPermission(Manifest.permission.CALL_PHONE)
                     != PackageManager.PERMISSION_GRANTED) {
                 // permission is not granted, ask for permission:
-                requestPermissions(new String[] { Manifest.permission.SEND_SMS},
+                requestPermissions(new String[] { Manifest.permission.CALL_PHONE},
                         PERMISSION_REQUEST);
             }
         }
 
+        Uri number = Uri.parse("tel:"+phone);
+        Intent callIntent = new Intent(Intent.ACTION_CALL, number); //use ACTION_CALL class
         Log.println(Log.DEBUG, "Telefonnummer: ", phone);
-        Log.println(Log.DEBUG, "Nachricht: ", message);
-        PendingIntent pi = PendingIntent.getActivity(this, 0,
-                new Intent(this, SMSActivity.class), 0);
-        SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(phone, null, message, pi, null);
+        try{
+            startActivity(callIntent);  //call activity and make phone call
+        }
+        catch (android.content.ActivityNotFoundException ex){
+            Toast.makeText(getApplicationContext(),"yourActivity is not founded",Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -160,20 +166,18 @@ public class CallActivity extends AppCompatActivity {
                                     found = true;
                                     text = "";
                                     text = s.substring(10, s.length());
-                                    phoneNumber.setText(text);
+                                    editTextCall.setText(text);
                                     break;
                                 case "NACHRICHT":
                                     found = true;
                                     text = "";
                                     text = s.substring(10, s.length());
-                                    smsMessage.setText(text);
                                     break;
-                                case "SENDEN":
+                                case "ANRUFEN":
                                     found = true;
-                                    if(phoneNumber!=null && smsMessage!=null){
-                                        String phone = phoneNumber.getText().toString();
-                                        String message = smsMessage.getText().toString();
-                                        sendSMS(phone, message);
+                                    if(editTextCall!=null){
+                                        String phone = editTextCall.getText().toString();
+                                        startCall(phone);
                                     }
                                     break;
                             }
