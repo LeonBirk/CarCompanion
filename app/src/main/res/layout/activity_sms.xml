@@ -38,8 +38,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Senden"
-        android:layout_below="@id/smsMessage"
-        android:layout_centerInParent="true"/>
+        android:layout_marginTop="62dp"
+        android:layout_below="@+id/smsMessage"
+        android:layout_centerHorizontal="true" />
     <ImageButton
         android:id="@+id/btnSpeakSend"
         android:layout_width="wrap_content"
@@ -47,10 +48,13 @@
         android:background="@null"
         android:src="@drawable/ico_mic_black"
         android:layout_below="@+id/sendSMS"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnSpeakSend"
-        android:text="Befehle: EMPFÄNGER, NACHRICHT, SENDEN"/>
+        android:text="Befehle: EMPFÄNGER, NACHRICHT, SENDEN"
+        android:layout_below="@+id/btnSpeakSend"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
 </RelativeLayout>
