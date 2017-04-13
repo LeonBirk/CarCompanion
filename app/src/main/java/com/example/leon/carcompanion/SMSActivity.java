@@ -179,8 +179,19 @@ public class SMSActivity extends AppCompatActivity {
                                     break;
                                 case "SENDEN":
                                     found = true;
+
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                        if (checkSelfPermission(Manifest.permission.READ_CONTACTS)
+                                                != PackageManager.PERMISSION_GRANTED) {
+                                            // permission is not granted, ask for permission:
+                                            requestPermissions(new String[] { Manifest.permission.READ_CONTACTS},
+                                                    PERMISSION_REQUEST);
+                                        }
+                                    }
+
                                     if(phoneNumber!=null && smsMessage!=null){
-                                        String phone = phoneNumber.getText().toString();
+                                        String phone = readContacts(phoneNumber.getText().toString());
+                                        //String phone = phoneNumber.getText().toString();
                                         String message = smsMessage.getText().toString();
                                         sendSMS(phone, message);
                                     }
@@ -196,5 +207,25 @@ public class SMSActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    /**
+     * Method to read the phone-number from a contact
+     */
+    private String readContacts(String contactName){
+
+        String phoneNumberContact="";
+        Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, null);
+        while (phones.moveToNext())
+        {
+            String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            if(name.equals(contactName)){
+                phoneNumberContact = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                break;
+            }
+        }
+        phones.close();
+        Log.d("PHONENUMBER", phoneNumberContact);
+        return phoneNumberContact;
     }
 }
