@@ -55,9 +55,27 @@ public class SMSActivity extends AppCompatActivity {
         sendSMS.setOnClickListener(new OnClickListener()
         {
             public void onClick(View v){
-                String phone = phoneNumber.getText().toString();
-                String message = smsMessage.getText().toString();
-                sendSMS(phone, message);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (checkSelfPermission(Manifest.permission.READ_CONTACTS)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        // permission is not granted, ask for permission:
+                        requestPermissions(new String[] { Manifest.permission.READ_CONTACTS},
+                                PERMISSION_REQUEST);
+                    }
+                }
+
+                if(phoneNumber!=null && smsMessage!=null){
+                    //test: phoneNumber or Contact-Name?
+                    if(phoneNumber.getText().toString().matches(".*\\d+.*")){
+                        String phone = phoneNumber.getText().toString();
+                        String message = smsMessage.getText().toString();
+                        sendSMS(phone, message);
+                    }else{
+                        String phone = readContacts(phoneNumber.getText().toString());
+                        String message = smsMessage.getText().toString();
+                        sendSMS(phone, message);
+                    }
+                }
             }
         });
 
@@ -126,27 +144,9 @@ public class SMSActivity extends AppCompatActivity {
                     //txtSpeechInput.setText("No Speech input recognized");
                 }
 
-                /**
                 if (resultCode == RESULT_OK && null != data) {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    if(result.get(0).toUpperCase().equals("SENDEN")){
-                        String phone = phoneNumber.getText().toString();
-                        String message = smsMessage.getText().toString();
-                        sendSMS(phone, message);
-                    }else if(result.get(0).toUpperCase().equals("EMPFÄNGER")){
-                        phoneNumber.setText(result.get(0));
-                    }else if(result.get(0).toUpperCase().equals("NACHRICHT")){
-                        smsMessage.setText(result.get(0));
-                    }
-
-                    //answer = result.get(0);
-                } */
-
-                if (resultCode == RESULT_OK && null != data) {
-                    ArrayList<String> result = data
-                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    //txtSpeechInput.setText(result.get(0));
                     answer = result.get(0);
 
                     for (String s:result) {
@@ -190,20 +190,24 @@ public class SMSActivity extends AppCompatActivity {
                                     }
 
                                     if(phoneNumber!=null && smsMessage!=null){
-                                        String phone = readContacts(phoneNumber.getText().toString());
-                                        //String phone = phoneNumber.getText().toString();
-                                        String message = smsMessage.getText().toString();
-                                        sendSMS(phone, message);
+                                        //test: phoneNumber or Contact-Name?
+                                        if(phoneNumber.getText().toString().matches(".*\\d+.*")){
+                                            String phone = phoneNumber.getText().toString();
+                                            String message = smsMessage.getText().toString();
+                                            sendSMS(phone, message);
+                                        }else{
+                                            String phone = readContacts(phoneNumber.getText().toString());
+                                            String message = smsMessage.getText().toString();
+                                            sendSMS(phone, message);
+                                        }
                                     }
                                     break;
                             }
                             if (found) break; //Aus der Schleife
                         }
-
                         if (found) break;
                     }
                 }
-
                 break;
             }
         }
