@@ -87,6 +87,18 @@ public class MainActivity extends RootActivity {
                 requestPermissions(new String[] { Manifest.permission.CALL_PHONE},
                         PERMISSION_REQUEST);
             }
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // permission is not granted, ask for permission:
+                requestPermissions(new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        PERMISSION_REQUEST);
+            }
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // permission is not granted, ask for permission:
+                requestPermissions(new String[] { Manifest.permission.READ_EXTERNAL_STORAGE},
+                        PERMISSION_REQUEST);
+            }
         }
 
         //Permission-Check Read_Contacts

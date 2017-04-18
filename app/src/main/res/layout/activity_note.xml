@@ -38,6 +38,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:background="@drawable/roundedbutton"
+            android:elevation="20dp"
             android:onClick="changeToCreateNote"
             android:shadowColor="@color/button_shadow"
             android:shadowDx="-2"
