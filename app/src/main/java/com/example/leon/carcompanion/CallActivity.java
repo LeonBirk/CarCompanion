@@ -206,6 +206,35 @@ public class CallActivity extends AppCompatActivity {
                                         }
                                     }
 
+                                    break;
+
+                                case "RUFE":
+                                    found = true;
+                                    text = "";
+                                    for(int j = i+1; j<split.length; j++) {
+                                        if (!split[j].equalsIgnoreCase("an")) {
+                                            if (j == i+1) text = split[j];
+                                            text = text + " " + split[j];
+                                        } else {
+                                            break;
+                                        }
+                                    }
+
+                                    editTextCall.setText(text);
+
+                                    if(editTextCall!=null){
+                                        //test: phoneNumber or Contact-Name?
+                                        if(editTextCall.getText().toString().matches(".*\\d+.*")){
+                                            String phone = editTextCall.getText().toString();
+                                            startCall(phone);
+                                        }else{
+                                            String phone = readContacts(editTextCall.getText().toString());
+                                            startCall(phone);
+                                        }
+                                    }
+
+                                    break;
+
 
                             }
                             if (found) break; //Aus der Schleife
