@@ -43,6 +43,19 @@ public class CreateNoteActivity extends RootActivity {
         edit_note_content = (EditText) findViewById(R.id.edit_note_content);
         saveButton = (Button) findViewById(R.id.save_note_button);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras!= null){
+            String titleToChange = (String) extras.get("ItemToChange_Title");
+            String contentToChange = (String) extras.get("ItemToChange_Content");
+
+            System.out.println("Extras sind: " + titleToChange + " und " + contentToChange);
+
+            edit_note_title.setText(titleToChange);
+            edit_note_content.setText(contentToChange);
+        } else {
+            System.out.println("Extras sind leer!");
+        }
+
 
         /**
          * Saving the note to external storage
@@ -50,17 +63,16 @@ public class CreateNoteActivity extends RootActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String note_title = edit_note_title.getText().toString();
                 String note_content = edit_note_content.getText().toString();
 
-                if(note_content.isEmpty()){
+                if(edit_note_title.getText().toString().isEmpty()){
                     promptSpeechInput();
                 }
 
                 if (isExternalStorageWritable()) {
                     System.out.println("Permission to writing Files is granted.");
-
-
 
                     if (!note_title.isEmpty() && !note_content.isEmpty()) {
                         System.out.println("Title is ---> " + note_title);
@@ -93,7 +105,9 @@ public class CreateNoteActivity extends RootActivity {
                 }
             }
         });
-        promptSpeechInput();
+        if(edit_note_title.getText().toString().isEmpty()){
+            promptSpeechInput();
+        }
     }
 
 

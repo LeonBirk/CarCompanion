@@ -93,6 +93,7 @@ public class NoteActivity extends AppCompatActivity {
             File fileToDelete = new File(filePath);
             boolean deleted = fileToDelete.delete();
             System.out.println(filePath + " has been deleted!");
+
         }
 
         // ArrayAdapter preparing the ArrayList data for display in the ListView
