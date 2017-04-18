@@ -26,7 +26,6 @@ import java.util.Locale;
 
 public class SMSActivity extends AppCompatActivity {
 
-    Button sendSMS;
     ImageButton btnSpeakSend;
     EditText phoneNumber;
     EditText smsMessage;
@@ -63,37 +62,9 @@ public class SMSActivity extends AppCompatActivity {
             }
         }
 
-        sendSMS = (Button) findViewById(R.id.sendSMS);
         btnSpeakSend = (ImageButton) findViewById(R.id.btnSpeakSend);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
         smsMessage = (EditText) findViewById(R.id.smsMessage);
-
-        sendSMS.setOnClickListener(new OnClickListener()
-        {
-            public void onClick(View v){
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkSelfPermission(Manifest.permission.READ_CONTACTS)
-                            != PackageManager.PERMISSION_GRANTED) {
-                        // permission is not granted, ask for permission:
-                        requestPermissions(new String[] { Manifest.permission.READ_CONTACTS},
-                                PERMISSION_REQUEST);
-                    }
-                }
-
-                if(phoneNumber!=null && smsMessage!=null){
-                    //test: phoneNumber or Contact-Name?
-                    if(phoneNumber.getText().toString().matches(".*\\d+.*")){
-                        String phone = phoneNumber.getText().toString();
-                        String message = smsMessage.getText().toString();
-                        sendSMS(phone, message);
-                    }else{
-                        String phone = readContacts(phoneNumber.getText().toString());
-                        String message = smsMessage.getText().toString();
-                        sendSMS(phone, message);
-                    }
-                }
-            }
-        });
 
         btnSpeakSend.setOnClickListener(new OnClickListener() {
             @Override
