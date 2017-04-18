@@ -88,6 +88,26 @@ public class MainActivity extends RootActivity {
                         PERMISSION_REQUEST);
             }
         }
+
+        //Permission-Check Read_Contacts
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.READ_CONTACTS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // permission is not granted, ask for permission:
+                requestPermissions(new String[] { Manifest.permission.READ_CONTACTS},
+                        PERMISSION_REQUEST);
+            }
+        }
+
+        //Permission-Check Send SMS
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.SEND_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // permission is not granted, ask for permission:
+                requestPermissions(new String[] { Manifest.permission.SEND_SMS},
+                        PERMISSION_REQUEST);
+            }
+        }
     }
 
     /**
