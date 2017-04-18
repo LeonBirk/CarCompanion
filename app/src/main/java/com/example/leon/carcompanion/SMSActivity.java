@@ -3,17 +3,13 @@ package com.example.leon.carcompanion;
 import android.Manifest;
 import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.media.Image;
 import android.os.Build;
 import android.provider.ContactsContract;
 import android.speech.RecognizerIntent;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -45,7 +41,7 @@ public class SMSActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sms);
+        setContentView(R.layout.activity_sms2);
 
         //Permission-Check Read_Contacts
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

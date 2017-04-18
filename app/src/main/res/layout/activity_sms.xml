@@ -1,18 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.leon.carcompanion.SMSActivity">
+    android:orientation="vertical"
+    tools:context="com.example.leon.carcompanion.NoteActivity"
+    android:weightSum="1"
+    android:padding="0dp">
+
+
+    <RelativeLayout
+        android:id="@+id/background_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="160dp"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.12"
+        android:background="@drawable/background"
+        android:padding="5dp"
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:src="@drawable/sms_icon"
+            android:id="@+id/notepad_icon"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:id="@+id/btnSpeakSend"
+            android:src="@drawable/ico_mic_black"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/roundedbutton"
+            android:onClick="changeToCreateNote"
+            android:shadowColor="@color/button_shadow"
+            android:shadowDx="-2"
+            android:shadowDy="2"
+            android:shadowRadius="0.1"
+            android:text="@string/add_note"
+            android:textColor="@color/white"
+            android:textSize="12pt" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textPhonenumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Telefonnummer oder Kontakt"
         android:layout_below="@+id/btnSpeak"
         android:layout_alignParentStart="true" />
@@ -32,28 +75,5 @@
         android:layout_width="match_parent"
         android:layout_height="200px"
         android:layout_below="@id/textMessage"/>
-    <Button
-        android:id="@+id/sendSMS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Senden"
-        android:layout_marginTop="62dp"
-        android:layout_below="@+id/smsMessage"
-        android:layout_centerHorizontal="true" />
-    <ImageButton
-        android:id="@+id/btnSpeakSend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/ico_mic_black"
-        android:layout_below="@+id/sendSMS"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Befehle: EMPFÄNGER, NACHRICHT, SENDEN"
-        android:layout_below="@+id/btnSpeakSend"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
-</RelativeLayout>
+
+</LinearLayout>
