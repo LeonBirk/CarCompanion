@@ -152,6 +152,7 @@ public class CallActivity extends AppCompatActivity {
                      */
                     for (String s:result) { //Aufteilung in "Interpretationen"
                         String[] split = s.split(" ");
+                        int i = 0;
                         for (String wort:split) { //Aufteilung in die einzelnen Wörter
 
                             Log.d("MAIN", wort);
@@ -181,8 +182,34 @@ public class CallActivity extends AppCompatActivity {
                                     }
                                     break;
 
+                                case "RUF":
+                                    found = true;
+                                    text = "";
+                                    for(int j = i; j<split.length; j++) {
+                                        if (!split[j].equalsIgnoreCase("an")) {
+                                            text = text + split[j];
+                                        } else {
+                                            break;
+                                        }
+                                    }
+
+                                    editTextCall.setText(text);
+
+                                    if(editTextCall!=null){
+                                        //test: phoneNumber or Contact-Name?
+                                        if(editTextCall.getText().toString().matches(".*\\d+.*")){
+                                            String phone = editTextCall.getText().toString();
+                                            startCall(phone);
+                                        }else{
+                                            String phone = readContacts(editTextCall.getText().toString());
+                                            startCall(phone);
+                                        }
+                                    }
+
+
                             }
                             if (found) break; //Aus der Schleife
+                            i++;
                         }
 
                         if (found) break;
