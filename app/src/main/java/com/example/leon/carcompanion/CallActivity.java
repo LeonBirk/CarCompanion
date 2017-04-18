@@ -5,8 +5,10 @@ import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.ContactsContract;
 import android.speech.RecognizerIntent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -168,10 +170,17 @@ public class CallActivity extends AppCompatActivity {
                                 case "ANRUFEN":
                                     found = true;
                                     if(editTextCall!=null){
-                                        String phone = editTextCall.getText().toString();
-                                        startCall(phone);
+                                        //test: phoneNumber or Contact-Name?
+                                        if(editTextCall.getText().toString().matches(".*\\d+.*")){
+                                            String phone = editTextCall.getText().toString();
+                                            startCall(phone);
+                                        }else{
+                                            String phone = readContacts(editTextCall.getText().toString());
+                                            startCall(phone);
+                                        }
                                     }
                                     break;
+
                             }
                             if (found) break; //Aus der Schleife
                         }
@@ -183,5 +192,25 @@ public class CallActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    /**
+     * Method to read the phone-number from a contact
+     */
+    private String readContacts(String contactName){
+
+        String phoneNumberContact="";
+        Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, null);
+        while (phones.moveToNext())
+        {
+            String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+            if(name.equals(contactName)){
+                phoneNumberContact = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                break;
+            }
+        }
+        phones.close();
+        Log.d("PHONENUMBER", phoneNumberContact);
+        return phoneNumberContact;
     }
 }
