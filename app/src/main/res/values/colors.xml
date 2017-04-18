@@ -3,7 +3,7 @@
     <color name="white">#ffffff</color>
     <color name="bg_gradient_start">#31244e</color>
     <color name="bg_gradient_end">#6b394c</color>
-    <color name="abc_btn_colored_borderless_text_material">#009688</color>
+    <color name="abc_btn_colored_borderless_text_material">#90F7E5</color>
     <color name="abc_btn_colored_text_material">#ffffff</color>
     <color name="button_shadow">#0E93AA</color>
 </resources>
