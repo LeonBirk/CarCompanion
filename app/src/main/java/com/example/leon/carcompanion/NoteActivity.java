@@ -1,5 +1,6 @@
 package com.example.leon.carcompanion;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -93,6 +95,13 @@ public class NoteActivity extends AppCompatActivity {
             File fileToDelete = new File(filePath);
             boolean deleted = fileToDelete.delete();
             System.out.println(filePath + " has been deleted!");
+
+            String titleDeletedNote = (String) extras.get("ItemToChange_Title");
+            Context context = getApplicationContext();
+            CharSequence toastText = (titleDeletedNote + ".txt ist gelöscht worden.");
+            int duration = Toast.LENGTH_LONG;
+            Toast deletedToast = Toast.makeText(context, toastText,duration);
+            deletedToast.show();
 
         }
 

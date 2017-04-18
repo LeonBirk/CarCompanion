@@ -2,9 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#31244e"
+    android:background="#00433D"
     android:orientation="vertical"
-    android:outlineProvider="background">
+    android:outlineProvider="background"
+    >
 
     <TextView
         android:id="@+id/txtSpeechInput"

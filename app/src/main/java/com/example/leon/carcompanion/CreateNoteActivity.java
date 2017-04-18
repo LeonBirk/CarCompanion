@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 
-public class CreateNoteActivity extends RootActivity {
+public class CreateNoteActivity extends AppCompatActivity {
     FileOutputStream stream;
     private String answer;
     private String text = "";        //Text for Empfänger or Message
@@ -56,6 +56,9 @@ public class CreateNoteActivity extends RootActivity {
             System.out.println("Extras sind leer!");
         }
 
+        if (!edit_note_title.getText().toString().isEmpty() && !edit_note_content.getText().toString().isEmpty()){
+            saveButton.setText("Notiz speichern!");
+        }
 
         /**
          * Saving the note to external storage
@@ -68,6 +71,8 @@ public class CreateNoteActivity extends RootActivity {
                 String note_content = edit_note_content.getText().toString();
 
                 if(edit_note_title.getText().toString().isEmpty()){
+                    promptSpeechInput();
+                } else if(edit_note_content.getText().toString().isEmpty()){
                     promptSpeechInput();
                 }
 
@@ -95,9 +100,7 @@ public class CreateNoteActivity extends RootActivity {
                     } else if (note_title.isEmpty()) {
                         edit_note_title.setText(R.string.note_title_empty_message);
                     }
-                    if (note_content.isEmpty()) {
-                        edit_note_content.setText(R.string.note_content_empty_content);
-                    }
+
 
                 } else {
 
@@ -105,7 +108,7 @@ public class CreateNoteActivity extends RootActivity {
                 }
             }
         });
-        if(edit_note_title.getText().toString().isEmpty()){
+        if(edit_note_title.getText().toString().isEmpty() || edit_note_content.getText().toString().isEmpty()){
             promptSpeechInput();
         }
     }

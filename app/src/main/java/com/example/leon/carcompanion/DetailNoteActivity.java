@@ -44,6 +44,7 @@ public class DetailNoteActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), NoteActivity.class);
                 intent.putExtra("ItemToDelete", finalText);
+                intent.putExtra("ItemToChange_Title", finalTextTitle);
                 intent.putExtra("FileToDelete", Environment.getExternalStorageDirectory() + "/Documents/Notizen/" + finalTextTitle + ".txt");
                 startActivity(intent);
             }
