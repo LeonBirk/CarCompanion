@@ -213,8 +213,11 @@ public class CallActivity extends AppCompatActivity {
                                     text = "";
                                     for(int j = i+1; j<split.length; j++) {
                                         if (!split[j].equalsIgnoreCase("an")) {
-                                            if (j == i+1) text = split[j];
-                                            text = text + " " + split[j];
+                                            if (j == i+1){
+                                                text = split[j];
+                                            }else {
+                                                text = text + " " + split[j];
+                                            }
                                         } else {
                                             break;
                                         }
