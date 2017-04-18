@@ -1,13 +1,21 @@
 package com.example.leon.carcompanion;
 
+import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.speech.RecognizerIntent;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -18,13 +26,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
+import java.util.Locale;
 
 
-public class NoteActivity extends RootActivity {
+public class NoteActivity extends AppCompatActivity {
 
     private ListView notesList;
-    private Scanner inFile1;
     public static String noteDir = "Notizen";
     private BufferedReader reader;
     private StringBuilder sb;
@@ -33,6 +40,7 @@ public class NoteActivity extends RootActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
@@ -40,7 +48,10 @@ public class NoteActivity extends RootActivity {
         File folder = new File(Environment.getExternalStorageDirectory() + "/Documents/" + noteDir);
         if (!folder.exists()) {
             folder.mkdir();
+            System.out.println("create Folder");
         }
+
+
 
         // Create Array of file names in 'Notizen' directory
         File dir = new File(Environment.getExternalStorageDirectory() + "/Documents/" + noteDir);
@@ -51,6 +62,7 @@ public class NoteActivity extends RootActivity {
                     }
                 }
         ));
+
 
         // Reads the content of all .txt files in the specified folder and adds it to an ArrayList
         for (int i = 0; i < fileNameList.size(); i++){
