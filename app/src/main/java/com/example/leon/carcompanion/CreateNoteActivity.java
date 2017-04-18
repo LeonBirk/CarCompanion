@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 
-public class CreateNoteActivity extends AppCompatActivity {
+public class CreateNoteActivity extends RootActivity {
     FileOutputStream stream;
     private String answer;
     private String text = "";        //Text for Empfänger or Message

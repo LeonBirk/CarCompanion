@@ -1,21 +1,14 @@
 package com.example.leon.carcompanion;
 
-import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Environment;
 import android.os.Bundle;
 
-import android.speech.RecognizerIntent;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -26,8 +19,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-
 
 public class NoteActivity extends AppCompatActivity {
 
@@ -68,7 +59,6 @@ public class NoteActivity extends AppCompatActivity {
         for (int i = 0; i < fileNameList.size(); i++){
             try{
                 File noteFile =  new File(fileNameList.get(i));
-                System.out.println("Now reading: " + fileNameList.get(i));
                 reader = new BufferedReader(new FileReader(Environment.getExternalStorageDirectory() + "/Documents/Notizen/" + noteFile));
                 String line;
 
@@ -89,6 +79,22 @@ public class NoteActivity extends AppCompatActivity {
 
         }
 
+        /**
+         * Deleting notes from external Storage
+         */
+        Bundle extras = getIntent().getExtras();
+        if(extras != null)
+        {
+            // necessary for hiding the note instantly, files are only being read after activity reload
+            String toDelete = (String) extras.get("ItemToDelete");
+            notesListItems.remove(toDelete);
+
+            String filePath = (String) extras.get("FileToDelete");
+            File fileToDelete = new File(filePath);
+            boolean deleted = fileToDelete.delete();
+            System.out.println(filePath + " has been deleted!");
+        }
+
         // ArrayAdapter preparing the ArrayList data for display in the ListView
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
@@ -99,6 +105,16 @@ public class NoteActivity extends AppCompatActivity {
         notesList = (ListView) findViewById(R.id.notesListView);
 
         notesList.setAdapter(arrayAdapter);
+        notesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String itemText = parent.getItemAtPosition(position).toString();
+                Intent intent = new Intent(getApplicationContext(), DetailNoteActivity.class);
+                intent.putExtra("Text", itemText);
+                startActivity(intent);
+            }
+        });
+
         }
 
     public void changeToCreateNote(View view){

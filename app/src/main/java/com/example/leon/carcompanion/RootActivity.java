@@ -2,6 +2,8 @@ package com.example.leon.carcompanion;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 
 public class RootActivity extends Activity {
     int onStartCount = 0;
@@ -19,6 +21,8 @@ public class RootActivity extends Activity {
             onStartCount = 2;
         }
     }
+
+
 
     @Override
     protected void onStart() {

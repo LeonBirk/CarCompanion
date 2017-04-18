@@ -55,6 +55,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/notesListView"
         android:layout_weight="0.12"
+        android:divider="@color/bg_gradient_end"
+
         />
 
 </LinearLayout>

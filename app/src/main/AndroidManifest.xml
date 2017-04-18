@@ -4,13 +4,13 @@
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
-    <uses-permission android:name="android.permission.SEND_SMS"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
-    <uses-permission android:name="android.permission.BROADCAST_SMS"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.BROADCAST_SMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <receiver
@@ -37,33 +37,38 @@
         </activity>
         <activity
             android:name=".NoteActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/note_module_name"/>
+            android:label="@string/note_module_name"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CallActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/call_module_name" />
+            android:label="@string/call_module_name"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SMSActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/sms_module_name"/>
+            android:label="@string/sms_module_name"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".SpotifyActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/spotify_module_name" />
+            android:label="@string/spotify_module_name"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".CreateNoteActivity"
-            android:parentActivityName=".NoteActivity"
-            android:label="Neue Notiz"/>
+            android:label="Neue Notiz"
+            android:parentActivityName=".NoteActivity" />
         <activity
             android:name=".ReadNoteActivity"
-            android:parentActivityName=".NoteActivity"
-            android:label="Reading Activity"/>
+            android:label="Reading Activity"
+            android:parentActivityName=".NoteActivity" />
+        <activity
+            android:name=".DetailNoteActivity"
+            android:label="Notiz"
+            android:parentActivityName=".NoteActivity"/>
 
         <!-- Needed for LoginActivity to work -->
         <activity
             android:name="com.spotify.sdk.android.authentication.LoginActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
     </application>
 
 </manifest>
