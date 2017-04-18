@@ -13,14 +13,13 @@
         android:id="@+id/textPhonenumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Telefonnummer"
+        android:text="Telefonnummer oder Kontakt"
         android:layout_below="@+id/btnSpeak"
         android:layout_alignParentStart="true" />
     <EditText
         android:id="@+id/phoneNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="phone"
         android:layout_below="@id/textPhonenumber"/>
     <TextView
         android:id="@+id/textMessage"
