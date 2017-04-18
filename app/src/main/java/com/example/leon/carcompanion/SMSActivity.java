@@ -47,6 +47,26 @@ public class SMSActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms);
 
+        //Permission-Check Read_Contacts
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.READ_CONTACTS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // permission is not granted, ask for permission:
+                requestPermissions(new String[] { Manifest.permission.READ_CONTACTS},
+                        PERMISSION_REQUEST);
+            }
+        }
+
+        //Permission-Check Send SMS
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.SEND_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // permission is not granted, ask for permission:
+                requestPermissions(new String[] { Manifest.permission.SEND_SMS},
+                        PERMISSION_REQUEST);
+            }
+        }
+
         sendSMS = (Button) findViewById(R.id.sendSMS);
         btnSpeakSend = (ImageButton) findViewById(R.id.btnSpeakSend);
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
