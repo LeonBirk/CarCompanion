@@ -41,7 +41,7 @@ public class SMSActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sms2);
+        setContentView(R.layout.activity_sms);
 
         //Permission-Check Read_Contacts
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

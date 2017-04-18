@@ -185,9 +185,9 @@ public class CallActivity extends AppCompatActivity {
                                 case "RUF":
                                     found = true;
                                     text = "";
-                                    for(int j = i; j<split.length; j++) {
+                                    for(int j = i+1; j<split.length; j++) {
                                         if (!split[j].equalsIgnoreCase("an")) {
-                                            text = text + split[j];
+                                            text = text + " " + split[j];
                                         } else {
                                             break;
                                         }
