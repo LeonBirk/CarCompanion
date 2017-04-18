@@ -65,14 +65,6 @@ public class CallActivity extends AppCompatActivity {
 
     private void startCall(String phone)
     {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.CALL_PHONE)
-                    != PackageManager.PERMISSION_GRANTED) {
-                // permission is not granted, ask for permission:
-                requestPermissions(new String[] { Manifest.permission.CALL_PHONE},
-                        PERMISSION_REQUEST);
-            }
-        }
 
         Uri number = Uri.parse("tel:"+phone);
         Intent callIntent = new Intent(Intent.ACTION_CALL, number); //use ACTION_CALL class

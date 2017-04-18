@@ -8,6 +8,7 @@ package com.example.leon.carcompanion;
         import android.content.ActivityNotFoundException;
         import android.content.Intent;
         import android.content.pm.PackageManager;
+        import android.os.Build;
         import android.os.Bundle;
         import android.speech.RecognizerIntent;
         import android.support.v4.content.ContextCompat;
@@ -28,6 +29,7 @@ public class MainActivity extends RootActivity {
     private Button btnNotes;
     private Button btnSMS;
     private final int REQ_CODE_SPEECH_INPUT = 100;
+    private static final int PERMISSION_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,15 @@ public class MainActivity extends RootActivity {
             }
         });
 
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.CALL_PHONE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // permission is not granted, ask for permission:
+                requestPermissions(new String[] { Manifest.permission.CALL_PHONE},
+                        PERMISSION_REQUEST);
+            }
+        }
     }
 
     /**
