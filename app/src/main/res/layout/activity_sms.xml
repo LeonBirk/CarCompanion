@@ -34,13 +34,12 @@
 
         <ImageButton
             android:id="@+id/btnSpeakSend"
-            android:src="@drawable/ico_mic_black"
+            android:src="@drawable/ico_mic"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:background="@drawable/roundedbutton"
-            android:onClick="changeToCreateNote"
             android:shadowColor="@color/button_shadow"
             android:shadowDx="-2"
             android:shadowDy="2"
@@ -56,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Telefonnummer oder Kontakt"
+        android:text="Telefonnummer oder Empfänger"
         android:layout_below="@+id/btnSpeak"
         android:layout_alignParentStart="true" />
     <EditText
@@ -73,7 +72,7 @@
     <EditText
         android:id="@+id/smsMessage"
         android:layout_width="match_parent"
-        android:layout_height="200px"
+        android:layout_height="150dp"
         android:layout_below="@id/textMessage"/>
     <TextView
         android:layout_width="wrap_content"
