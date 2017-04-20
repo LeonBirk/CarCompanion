@@ -37,27 +37,42 @@ public class NoteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
 
-        // Creates Folder 'Notizen' if there isn't one yet
-        File folder = new File(Environment.getExternalStorageDirectory() + "/Documents/" + noteDir);
+        // Creates Folder 'Documents' if there isn't one yet
+        File folder = new File(Environment.getExternalStorageDirectory() + "/Documents/");
+        System.out.println(folder.toString());
         if (!folder.exists()) {
             folder.mkdir();
-            System.out.println("create Folder");
+            System.out.println("create Folder: Documents");
+        }
+
+        // Creates Folder 'Notizen' if there isn't one yet
+        File folder1 = new File(Environment.getExternalStorageDirectory() + "/Documents/" + noteDir);
+        System.out.println(folder1.toString());
+        if (!folder1.exists()) {
+            folder1.mkdir();
+            System.out.println("create Folder: " + noteDir);
         }
 
 
 
         // Create Array of file names in 'Notizen' directory
-        File dir = new File(Environment.getExternalStorageDirectory() + "/Documents/" + noteDir);
-        List<String> fileNameList = Arrays.asList(dir.list(
-                new FilenameFilter() {
-                    @Override public boolean accept(File dir, String name) {
-                        return name.endsWith(".txt");
+
+            File dir = new File(Environment.getExternalStorageDirectory() + "/Documents/" + noteDir);
+
+            System.out.println(dir.toString());
+            List <String> fileNameList = Arrays.asList(dir.list(
+                    new FilenameFilter() {
+                        @Override
+                        public boolean accept(File dir, String name) {
+                            return name.endsWith(".txt");
+                        }
                     }
-                }
-        ));
+            ));
+            System.out.print("NotesArray wird erstellt");
 
 
-        // Reads the content of all .txt files in the specified folder and adds it to an ArrayList
+
+        // Reads the content of all .txt files in the specified folder1 and adds it to an ArrayList
         for (int i = 0; i < fileNameList.size(); i++){
             try{
                 File noteFile =  new File(fileNameList.get(i));
