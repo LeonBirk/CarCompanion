@@ -1,95 +1,80 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#00433D"
-    android:orientation="vertical"
-    android:outlineProvider="background"
-    >
+    android:outlineProvider="background">
 
-    <TextView
-        android:id="@+id/txtSpeechInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:textColor="@color/white"
-        android:textSize="26sp"
-        android:textStyle="normal" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/ChosenLanguage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"/>
+        <ImageButton
+            android:id="@+id/call_btn"
+            android:layout_width="190dp"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@drawable/anrufe_icon"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:id="@+id/linearLayout">
+        <ImageButton
+            android:id="@+id/spotify_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:src="@drawable/spotify_icon"
+            android:layout_toRightOf="@id/call_btn"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/note_btn"
+            android:layout_width="190dp"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/notes_icon" />
+
+        <ImageButton
+            android:id="@+id/sms_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/note_btn"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sms_icon" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_weight="1">
 
         <ImageButton
             android:id="@+id/btnSpeak"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ico_mic"
             android:background="@null"
-            android:src="@drawable/ico_mic" />
+            android:layout_centerInParent="true"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/tap_on_mic"
-            android:textColor="@color/white"
-            android:textSize="10pt"
-            android:textStyle="normal" />
-    </LinearLayout>
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/call_btn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Anrufe"
-        android:layout_below="@+id/txtSpeechInput"
-        android:layout_alignStart="@+id/spotify_btn"
-        android:layout_marginTop="42dp" />
-
-    <Button
-        android:id="@+id/spotify_btn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Spotify"
-        android:layout_below="@+id/call_btn"/>
-
-    <Button
-        android:id="@+id/note_btn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Notizen"
-        android:layout_below="@+id/spotify_btn"/>
-
-    <Button
-        android:id="@+id/sms_btn"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="SMS"
-        android:layout_below="@+id/note_btn"/>
-
-
-</RelativeLayout>
+</LinearLayout>

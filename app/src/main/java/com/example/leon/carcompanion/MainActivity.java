@@ -4,7 +4,6 @@ package com.example.leon.carcompanion;
         import java.util.Locale;
 
         import android.Manifest;
-        import android.app.Activity;
         import android.content.ActivityNotFoundException;
         import android.content.Intent;
         import android.content.pm.PackageManager;
@@ -34,7 +33,7 @@ public class MainActivity extends RootActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
