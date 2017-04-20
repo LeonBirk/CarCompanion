@@ -11,6 +11,7 @@ package com.example.leon.carcompanion;
         import android.os.Bundle;
         import android.speech.RecognizerIntent;
         import android.support.v4.content.ContextCompat;
+        import android.support.v7.app.AppCompatActivity;
         import android.util.Log;
         import android.view.View;
         import android.widget.Button;
@@ -18,29 +19,29 @@ package com.example.leon.carcompanion;
         import android.widget.TextView;
         import android.widget.Toast;
 
-public class MainActivity extends RootActivity {
+public class MainActivity extends AppCompatActivity {
 
     private String answer;
     private TextView txtSpeechInput;
     private ImageButton btnSpeak;
-    private Button btnCalls;
-    private Button btnSpotify;
-    private Button btnNotes;
-    private Button btnSMS;
+    private ImageButton btnCalls;
+    private ImageButton btnSpotify;
+    private ImageButton btnNotes;
+    private ImageButton btnSMS;
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private static final int PERMISSION_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_main);
 
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
         btnSpeak = (ImageButton) findViewById(R.id.btnSpeak);
-        btnCalls = (Button) findViewById(R.id.call_btn);
-        btnSpotify = (Button) findViewById(R.id.spotify_btn);
-        btnNotes = (Button) findViewById(R.id.note_btn);
-        btnSMS = (Button) findViewById(R.id.sms_btn);
+        btnCalls = (ImageButton) findViewById(R.id.call_btn);
+        btnSpotify = (ImageButton) findViewById(R.id.spotify_btn);
+        btnNotes = (ImageButton) findViewById(R.id.note_btn);
+        btnSMS = (ImageButton) findViewById(R.id.sms_btn);
 
         btnSpeak.setOnClickListener(new View.OnClickListener() {
 
