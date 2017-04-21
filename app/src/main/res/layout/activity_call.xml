@@ -29,7 +29,7 @@ android:padding="0dp">
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:padding="20dp"
-            android:src="@drawable/sms_icon" />
+            android:src="@drawable/anrufe_icon" />
 
         <ImageButton
             android:id="@+id/btnCallSpeak"
