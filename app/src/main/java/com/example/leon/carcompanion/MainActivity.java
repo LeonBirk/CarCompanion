@@ -81,6 +81,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.RECORD_AUDIO)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // permission is not granted, ask for permission:
+                requestPermissions(new String[] { Manifest.permission.RECORD_AUDIO},
+                        PERMISSION_REQUEST);
+            }
             if (checkSelfPermission(Manifest.permission.CALL_PHONE)
                     != PackageManager.PERMISSION_GRANTED) {
                 // permission is not granted, ask for permission:
