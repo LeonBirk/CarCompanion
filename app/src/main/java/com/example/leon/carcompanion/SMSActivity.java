@@ -3,6 +3,7 @@ package com.example.leon.carcompanion;
 import android.Manifest;
 import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -91,6 +92,14 @@ public class SMSActivity extends AppCompatActivity {
                 new Intent(this, SMSActivity.class), 0);
         SmsManager sms = SmsManager.getDefault();
         sms.sendTextMessage(phone, null, message, pi, null);
+
+        //Toast
+        Context context = getApplicationContext();
+        CharSequence text = "SMS gesendet!";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
     }
 
     /**
