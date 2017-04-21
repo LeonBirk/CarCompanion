@@ -34,7 +34,7 @@
         android:scaleType="centerCrop"/>
 
     <ImageButton
-        android:id="@+id/btnSpeakSend"
+        android:id="@+id/btnSpeakInput"
         android:src="@drawable/ico_mic"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -69,11 +69,12 @@
         android:visibility="invisible"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/textView"
-        android:scaleX="0.9"
-        android:scaleY="0.9"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
         android:onClick="clickPlay"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="0dp"
+        android:background="@null"/>
 
     <ImageButton
         android:id="@+id/pauseButton"
@@ -82,11 +83,12 @@
         android:src="@drawable/pause"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/textView"
-        android:scaleX="0.9"
-        android:scaleY="0.9"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
         android:onClick="clickPause"
         tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="0dp"
+        android:background="@null"/>
 
     <ImageButton
         android:id="@+id/nextButton"
@@ -94,30 +96,24 @@
         android:layout_height="80dp"
         android:scaleX="0.9"
         android:scaleY="0.9"
-        android:src="@drawable/next"
+        android:src="@drawable/weiter"
         android:onClick="clickNext"
         android:layout_alignTop="@+id/playButton"
         android:layout_toRightOf="@+id/playButton"
         android:layout_toEndOf="@+id/playButton"
-        android:layout_marginTop="35dp" />
+        android:layout_marginTop="35dp"
+        android:background="@null"/>
 
     <ImageButton
         android:id="@+id/backButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:scaleX="0.9"
-        android:scaleY="0.9"
-        android:src="@drawable/back"
+        android:src="@drawable/zurueck"
         android:onClick="clickBack"
+        android:scaleY="0.9"
+        android:scaleX="0.9"
         android:layout_alignTop="@+id/nextButton"
         android:layout_toLeftOf="@+id/playButton"
-        android:layout_toStartOf="@+id/playButton" />
-    <ImageButton
-        android:id="@+id/btnSpeakInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:src="@drawable/ico_mic"
-        android:layout_below="@+id/playButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_toStartOf="@+id/playButton"
+        android:background="@null"/>
 </RelativeLayout>
