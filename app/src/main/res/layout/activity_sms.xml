@@ -34,16 +34,19 @@
 
         <ImageButton
             android:id="@+id/btnSpeakSend"
-            android:src="@drawable/ico_mic"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
+            android:padding="10dp"
             android:background="@drawable/roundedbutton"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
             android:shadowColor="@color/button_shadow"
             android:shadowDx="-2"
             android:shadowDy="2"
             android:shadowRadius="0.1"
+            android:src="@drawable/ico_mic"
             android:text="@string/add_note"
             android:textColor="@color/white"
             android:textSize="12pt" />
