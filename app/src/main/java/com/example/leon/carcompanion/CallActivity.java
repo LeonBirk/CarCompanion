@@ -40,11 +40,11 @@ public class CallActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call);
 
-        btnStartCall = (Button) findViewById(R.id.btnStartCall);
+        //btnStartCall = (Button) findViewById(R.id.btnStartCall);
         btnCallSpeak = (ImageButton) findViewById(R.id.btnCallSpeak);
         editTextCall = (EditText) findViewById(R.id.editTextCall);
 
-
+        /*
         btnStartCall.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v){
@@ -52,6 +52,7 @@ public class CallActivity extends AppCompatActivity {
                 startCall(phone);
             }
         });
+        */
 
         btnCallSpeak.setOnClickListener(new View.OnClickListener() {
             @Override

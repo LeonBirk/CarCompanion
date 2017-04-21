@@ -88,11 +88,6 @@ public class SMSActivity extends AppCompatActivity {
 
         Log.println(Log.DEBUG, "Telefonnummer: ", phone);
         Log.println(Log.DEBUG, "Nachricht: ", message);
-        PendingIntent pi = PendingIntent.getActivity(this, 0,
-                new Intent(this, SMSActivity.class), 0);
-        SmsManager sms = SmsManager.getDefault();
-        sms.sendTextMessage(phone, null, message, pi, null);
-
         //Toast
         Context context = getApplicationContext();
         CharSequence text = "SMS gesendet!";
@@ -100,6 +95,12 @@ public class SMSActivity extends AppCompatActivity {
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
+
+        PendingIntent pi = PendingIntent.getActivity(this, 0,
+                new Intent(this, SMSActivity.class), 0);
+        SmsManager sms = SmsManager.getDefault();
+        sms.sendTextMessage(phone, null, message, pi, null);
+
     }
 
     /**
