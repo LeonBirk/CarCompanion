@@ -69,6 +69,7 @@
         />
 
         <TextView
+            android:id="@+id/micDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/btnSpeak"
@@ -87,13 +88,15 @@
             />
 
         <TextView
+            android:id="@+id/callDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ANRUFEN"
             android:textColor="@color/white"
-            android:layout_marginLeft="35dp"/>
+            android:layout_marginLeft="35dp" />
 
         <TextView
+            android:id="@+id/spotifyDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SPOTIFY"
@@ -103,6 +106,7 @@
             />
 
         <TextView
+            android:id="@+id/noteDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NOTIZEN"
@@ -111,6 +115,7 @@
             android:layout_alignParentBottom="true"/>
 
         <TextView
+            android:id="@+id/smsDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SMS"

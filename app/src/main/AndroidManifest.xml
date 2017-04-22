@@ -28,7 +28,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,31 +40,39 @@
         <activity
             android:name=".NoteActivity"
             android:label="@string/note_module_name"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".CallActivity"
             android:label="@string/call_module_name"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SMSActivity"
             android:label="@string/sms_module_name"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SpotifyActivity"
             android:label="@string/spotify_module_name"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".CreateNoteActivity"
             android:label="Neue Notiz"
-            android:parentActivityName=".NoteActivity" />
+            android:parentActivityName=".NoteActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ReadNoteActivity"
             android:label="Reading Activity"
-            android:parentActivityName=".NoteActivity" />
+            android:parentActivityName=".NoteActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".DetailNoteActivity"
             android:label="Notiz"
-            android:parentActivityName=".NoteActivity"/>
+            android:parentActivityName=".NoteActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- Needed for LoginActivity to work -->
         <activity
