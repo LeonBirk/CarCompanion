@@ -20,7 +20,7 @@
         android:minHeight="160dp"
         android:maxHeight="160dp"
         android:layout_gravity="center_vertical"
-        android:layout_weight="0.25"
+        android:layout_weight="0.34"
         android:background="@drawable/background"
         android:padding="5dp"
         >
@@ -77,7 +77,7 @@
     <EditText
         android:id="@+id/smsMessage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_below="@id/textMessage"
         android:inputType="textMultiLine"
         android:gravity="top|start" />
